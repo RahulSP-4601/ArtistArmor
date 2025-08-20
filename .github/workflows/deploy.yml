@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]   # change if your default branch is different
   workflow_dispatch:
 
 permissions:
@@ -18,16 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Prepare Pages (recommended)
+      - uses: actions/configure-pages@v5
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+
       - run: npm ci
       - run: npm run build
-      - run: mkdir build_out && cp -r dist/* build_out/ && cp build_out/index.html build_out/404.html
+      # SPA fallback so deep links work
+      - run: cp dist/index.html dist/404.html || echo "Windows copy handled locally"
+
+      # Upload the production-ready site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build_out
+          path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
