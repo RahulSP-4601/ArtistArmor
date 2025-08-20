@@ -1,5 +1,5 @@
 // src/App.jsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Global layout/reset + variables import
 import './styles/app.css';
@@ -13,11 +13,14 @@ import Home from './pages/Home';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    // Use Vite's BASE_URL so dev = "/" and Pages = "/ArtistArmor/"
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Header />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* optional: catch-all to home to avoid stray 404s */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Footer />

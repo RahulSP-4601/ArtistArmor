@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/ArtistArmor/'   // repo name exactly
+  base: '/ArtistArmor/'   // exact repo name
 })
