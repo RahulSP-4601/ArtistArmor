@@ -37,8 +37,8 @@ Built with **React + Vite** and clean CSS, featuring scroll-reveal animations, c
 
 ```bash
 # 1) clone
-git clone https://github.com/<YOUR_USERNAME>/<YOUR_REPO>.git
-cd <YOUR_REPO>
+git clone https://github.com/RahulSP-4601/ArtistArmor.git
+cd ArtistArmor
 
 # 2) install deps
 npm install
