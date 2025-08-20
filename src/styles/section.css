@@ -1,0 +1,6 @@
+@import "./variables.css";
+
+.section {
+  padding: var(--pad-section) 0;
+  margin-top: 20px;
+}

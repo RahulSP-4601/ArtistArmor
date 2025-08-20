@@ -1,0 +1,10 @@
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(104, 151, 255, 0.35),
+    transparent
+  );
+  opacity: 0.45;
+}

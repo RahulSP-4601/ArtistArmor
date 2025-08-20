@@ -1,0 +1,54 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: radial-gradient(
+    1200px 900px at 50% -10%,
+    #1b2234 0%,
+    var(--bg) 35%,
+    var(--bg) 100%
+  );
+  color: var(--text);
+  font: 16px/1.5 Inter, system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Layout so footer sticks to bottom */
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
+/* links/images */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* smooth + invisible scrollbar (optional) */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}

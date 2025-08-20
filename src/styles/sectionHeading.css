@@ -1,0 +1,31 @@
+@import "./variables.css";
+
+.hero-center {
+  text-align: center;
+  padding-top: 48px;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 780px;
+  margin: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #fff, var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* reveal-on-scroll utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}

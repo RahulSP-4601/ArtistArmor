@@ -1,0 +1,7 @@
+@import "./variables.css";
+
+.container {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 0 20px;
+}

@@ -1,0 +1,26 @@
+@import "./variables.css";
+
+.card {
+  background: linear-gradient(180deg, #151a26, #121622);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #1d2741;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.card h3 {
+  margin: 14px 0 8px;
+}
+.card p {
+  color: var(--muted);
+  font-size: 16px;
+}

@@ -1,0 +1,17 @@
+:root {
+  --bg: #0b0d12;
+  --bg-soft: #0f1218;
+  --card: #141824;
+  --text: #e9edf5;
+  --muted: #a9b1c6;
+
+  --brand: #2f6bff;
+  --brand-2: #67a5ff;
+  --danger: #ff5757;
+
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --maxw: 1120px;
+  --pad-section: clamp(64px, 7vw, 120px);
+}

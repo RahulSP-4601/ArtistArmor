@@ -1,0 +1,205 @@
+@import "./variables.css";
+
+/* ===========================
+   Header bar
+   =========================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* below drawer (999) */
+}
+
+.hdr-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 16px; /* edge padding */
+}
+
+.hdr-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 24px;
+}
+.hdr-brand img {
+  display: block;
+}
+
+/* Desktop nav */
+.hdr-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hdr-nav-desktop a {
+  padding: 8px 10px;
+  opacity: 0.9;
+}
+.hdr-nav-desktop a:hover {
+  opacity: 1;
+}
+
+/* Mobile toggle button */
+.hdr-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 8px;
+  border-radius: 8px;
+}
+.hdr-toggle:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .hdr-nav-desktop {
+    display: none;
+  }
+  .hdr-toggle {
+    display: inline-grid;
+    place-items: center;
+  }
+}
+
+/* ===========================
+   MOBILE: Right-side drawer (overlay)
+   Works with the markup:
+   <div class="hdr-drawer {open? 'open':''}">
+     <div class="hdr-scrim"></div>
+     <nav class="hdr-drawer-panel">...</nav>
+   </div>
+   =========================== */
+.hdr-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none; /* disabled until open */
+}
+
+.hdr-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hdr-drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(86vw, 360px);
+  background: linear-gradient(180deg, #141824, #101521);
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: -24px 0 48px rgba(0, 0, 0, 0.45);
+  padding: calc(16px + env(safe-area-inset-top)) 16px
+    calc(16px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateX(100%); /* hidden off screen */
+  transition: transform 0.22s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hdr-drawer-panel a {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.hdr-drawer-panel a:hover {
+  background: #1a2233;
+}
+.hdr-drawer-panel .btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* Open state */
+.hdr-drawer.open {
+  pointer-events: auto;
+}
+.hdr-drawer.open .hdr-scrim {
+  opacity: 1;
+}
+.hdr-drawer.open .hdr-drawer-panel {
+  transform: none;
+}
+
+/* ===========================
+   MOBILE: Dropdown (below header)
+   Only used if you add a <nav class="hdr-dropdown">...</nav>
+   and toggle the 'open' class in JS.
+   =========================== */
+.hdr-dropdown {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hdr-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 64px; /* sits under header bar */
+    background: linear-gradient(180deg, #141824, #101521);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    padding: 8px 12px;
+    display: grid;
+    gap: 8px;
+
+    /* animated reveal */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.22s ease, opacity 0.18s ease;
+  }
+  .hdr-dropdown.open {
+    max-height: 260px; /* enough for links + button */
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hdr-dropdown a {
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .hdr-dropdown a:hover {
+    background: #1a2233;
+  }
+  .hdr-dropdown .btn {
+    width: 100%;
+  }
+}
+
+/* Screen-reader-only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Motion-safe fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hdr-scrim,
+  .hdr-drawer-panel,
+  .hdr-dropdown {
+    transition: none !important;
+  }
+}
